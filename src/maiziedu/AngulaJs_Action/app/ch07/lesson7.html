@@ -1,0 +1,87 @@
+<!doctype html>
+<html ng-app="lesson" ng-controller="FormCtrl" >
+  <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>
+	LESSON 7
+  </title>
+  <link rel="stylesheet" type="text/css" href="css/main.css" />
+  <style>
+  #content1{padding:16px;}
+  </style>
+
+  </head>
+
+  <body>
+  
+	<form ng-submit="PostForm()" >
+		<ul>
+			<li>
+				<label>用户名：</label><input type="text" ng-model="form.UserName" />
+			</li>
+			<li>
+				<label>昵称：</label><input type="text" ng-model="form.NickName" />
+			</li>
+			<li>
+				<label>年龄：</label><input type="text" ng-model="form.Age" />
+			</li>
+			<li>
+				<label>是否已婚：</label><input  type="checkbox" ng-model="form.IsMarried" />
+			</li>
+			<li>
+				<label>喜爱的动物：</label>
+				<input  type="radio" ng-model="form.LovedAnimal" value="狗" />狗
+				<input  type="radio" ng-model="form.LovedAnimal" value="猫" />猫
+			</li>
+			<li>
+				<label>居住的城市：</label>
+				<select ng-model="form.LocationCity"
+				ng-options=" obj.text as obj.value for obj in form.LocationCityList"
+				>
+				<option value="">请选择城市</option>
+				</select>
+			</li>
+			<li>
+				<input type="submit" value="提交" />
+			</li>
+		</ul>
+	</form>
+  
+	<ul>
+		<li>{{form.UserName}}</li>
+		<li>{{form.NickName}}</li>
+		<li>{{form.Age}}</li>
+		<li>{{form.IsMarried}}</li>
+		<li>{{form.LovedAnimal}}</li>
+		<li>{{form.LocationCity}}</li>
+	</ul>
+	
+	<script src="scripts/angular-1.4.6.min.js"></script>
+	<script>
+		var app = angular.module("lesson",[]);
+		app.controller("FormCtrl",function($scope){
+			
+			$scope.formInitObj = {
+				UserName:"",
+				NickName:"",
+			};
+			$scope.form = {};
+			
+			$scope.form.LocationCityList = [
+				{text:"北京",value:"北京"},
+				{text:"上海",value:"上海"},
+				{text:"广州",value:"广州"}
+			];
+			
+			$scope.PostForm=function(){
+				console.log($scope.form);
+				$scope.form = angular.copy($scope.formInitObj);
+			}
+			
+		});
+		
+
+	</script>
+	
+  </body>
+</html>

@@ -1,0 +1,74 @@
+<!doctype html>
+<html ng-app="lesson" >
+  <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>
+	LESSON 6
+  </title>
+  <link rel="stylesheet" type="text/css" href="css/main.css" />
+  <style>
+  #content1{padding:16px;}
+  </style>
+
+  </head>
+
+  <body>
+  
+	<div  ng-controller="MomCtrl">
+		<h1>{{Name}}</h1>
+		<h2>{{Location}}</h2>
+		<button ng-click="ChangeHouse()">换房子</button>
+		
+		<div style="margin-top:50px;" ng-controller="MeCtrl">
+			<h1>{{Name}}</h1>
+			<h2>{{Location}}</h2>
+			<h4>{{Mobile}}</h4>
+		</div>
+		
+		<div style="margin-top:50px;" ng-controller="GfCtrl">
+			<h1>{{Name}}</h1>
+			<h4>{{Mobile}}</h4>
+			<button ng-click="Call()">打电话</button>
+		</div>
+		
+	</div>
+  
+	
+	
+	<script src="scripts/angular-1.4.6.min.js"></script>
+	<script>
+		var app = angular.module("lesson",[]);
+		app.controller("MomCtrl",function($scope){
+			$scope.Name="我是大伟他妈";
+			$scope.Location="幸福屯大队一组51号";
+			$scope.ChangeHouse = function(){
+				$scope.Location= "光荣街道69号202室";
+			}
+			$scope.$on("callDaWei",function(){
+				$scope.$broadcast("yourGfCall");
+			});
+		});
+		
+		app.controller("MeCtrl",function($scope){
+			$scope.Name="我是大伟";
+			$scope.Mobile="待机";
+			$scope.$on("yourGfCall",function(){
+				$scope.Mobile = "GF来电";
+				//TODO
+			});
+		});
+
+		app.controller("GfCtrl",function($scope){
+			$scope.Name="我是大伟的女朋友";
+			$scope.Mobile="待机";
+			$scope.Call = function(){
+				$scope.Mobile = "呼叫大伟";
+				$scope.$emit("callDaWei");
+			};
+		});
+		
+
+	</script>
+	
+  </body>
+</html>

@@ -1,0 +1,38 @@
+<!doctype html>
+<html ng-app="lesson" ng-controller="lesson2" ng-init=" AccountId=1 ; AccountName ='Tom' ; Location ='CHINA' ; AccountInfo ={'AccountId':2,'AccountName':'Tommy','Location':'CHINA-ShangHai'} ; Week = ['Mon','Tue','Wen','Thu','Fri','Sat','Sun']  " >
+  <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>
+	LESSON 2
+  </title>
+  <link rel="stylesheet" type="text/css" href="css/main.css" />
+  <style>
+  #content1{padding:16px;}
+  </style>
+
+  </head>
+
+  <body>
+  
+		<b>{{ Now }}</b>
+  
+		<b style="color:blue;">{{ Week[1] }}</b>
+  
+		<ul>
+			<li>{{ AccountInfo.AccountId }}</li>
+			<li>{{ AccountInfo.AccountName }}</li>
+			<li>{{ AccountInfo.Location }}</li>
+		</ul>
+  
+	<script src="scripts/angular-1.0.1.min.js"></script>
+	<script>
+		var app = angular.module("lesson",[]);
+		app.controller("lesson2",function($scope){
+			var now = new Date();
+			$scope.Now = now.getHours()+":"+now.getMinutes()+":"+now.getSeconds();
+		});
+			
+	</script>
+	
+  </body>
+</html>

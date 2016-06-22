@@ -1,0 +1,52 @@
+<!doctype html>
+<html ng-app >
+  <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>
+	LESSON 1
+  </title>
+  <link rel="stylesheet" type="text/css" href="css/main.css" />
+  <style>
+  #content1{padding:16px;}
+  </style>
+
+  </head>
+
+  <body>
+  
+		<b>AngularJs模式</b>
+		<ul>
+			<li>姓：<input type="text" ng-model="xing" /></li>
+			<li>名：<input type="text" ng-model="ming" /></li>
+			<li>Hello <b >{{xing || ''}} {{ming || ' ' }}</b></li>
+			<li><a href="#" >输出姓名</a></li>
+		</ul>
+  
+  李大伟_大不发音
+		
+		<b>传统模式</b>
+		<ul>
+			<li>姓：<input type="text" id="xingInput" /></li>
+			<li>名：<input type="text" id="mingInput" /></li>
+			<li>Hello <b id="nameView"></b></li>
+			<li><a href="#" id="showButton">输出姓名</a></li>
+		</ul>
+	
+	
+	<script src="scripts/angular-1.0.1.min.js"></script>
+	<script>
+			var xing = document.getElementById("xingInput");
+			var ming = document.getElementById("mingInput");
+			
+			var showButton =document.getElementById("showButton");
+			showButton.onclick=function(){
+				var name = xing.value+" "+ming.value;
+				var nameView = document.getElementById("nameView");
+				nameView.innerHTML = name;
+				return false;
+			}
+			
+	</script>
+	
+  </body>
+</html>

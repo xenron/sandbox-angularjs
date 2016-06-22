@@ -1,0 +1,57 @@
+<!doctype html>
+<html ng-app="lesson" ng-controller="FormCtrl" >
+  <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>
+	LESSON 8
+  </title>
+  <link rel="stylesheet" type="text/css" href="css/main.css" />
+  <style>
+  #content1{padding:16px;}
+  </style>
+
+  </head>
+
+  <body>
+  
+	<form  name="myForm" ng-submit="PostForm()"  >
+		<ul>
+			<li>
+				<label>用户名：</label><input type="text" name="UserName" ng-model="UserName" ng-pattern="/^\w{8,18}$/" />
+				<span style="color:red" ng-show="myForm.UserName.$dirty && myForm.UserName.$invalid">
+					<span>请输入8到18位的用户名</span>
+				</span>
+			</li>
+			
+			<li>
+				<label>编号</label><input type="text" name="UserIndex" ng-model="UserIndex" ng-pattern="/^\d+$/" />
+				<span style="color:red;" ng-show=" myForm.UserIndex.$dirty && myForm.UserIndex.$invalid ">
+					请输入您的数字编号
+				</span>
+			</li>
+			
+			<li>
+				<input ng-disabled="myForm.$invalid" type="submit" value="提交" />
+			</li>
+		</ul>
+	</form>
+  
+
+	<script src="scripts/angular-1.4.6.min.js"></script>
+	<script>
+		var app = angular.module("lesson",[]);
+		app.controller("FormCtrl",function($scope){
+		
+				$scope.myForm={};
+				$scope.UserName = 'Tom';
+
+				$scope.PostForm=function(){
+					console.log($scope.myForm);
+				}
+		});
+		
+
+	</script>
+	
+  </body>
+</html>
